@@ -3,17 +3,19 @@
 #include <string>
 using namespace std;
 
-
-
 template <typename type>
 class Sort {
 
 public:
 
     vector <type> dane;
+    bool isSorted = true;
 
     void addElement(type el) {
 
+        if (!dane.empty() && dane.back() > el) {
+            isSorted = false;
+        }
         dane.push_back(el);
 
     }
@@ -26,13 +28,19 @@ public:
 
     void bubbleSort()
     {
-        int n = dane.size();
-        int i, j;
-        for (i = 0; i < n-1; i++)
+        if (!isSorted) {
 
-            for (j = 0; j < n-i-1; j++)
-                if (dane.at(j) > dane.at(j+1))
-                    swap(dane.at(j), dane.at(j+1));
+            int n = dane.size();
+            int i, j;
+            for (i = 0; i < n - 1; i++)
+
+                for (j = 0; j < n - i - 1; j++)
+                    if (dane.at(j) > dane.at(j + 1))
+                        swap(dane.at(j), dane.at(j + 1));
+
+        }
+
+        isSorted = true;
 
     }
 
